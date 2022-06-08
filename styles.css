@@ -4,19 +4,42 @@
   --shadow: rgba(0,0,0,0.5);
 }
 
+/* Remove arrows in the number field */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* Top content */
 .header{
   max-width: 500px;
   margin: auto;
 }
 
 .container{
-  border: 5px solid red;
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
+
+/* Card styling */
+h2, h3{
+  font-size: 18px;
+}
+
+.remove-link{
+  text-align: right;
+  height: 0px;
+}
+
+
+/* Pop-up styling */
 .overlay{
   background-color: var(--shadow);
   position: fixed;
@@ -30,10 +53,10 @@
   align-items: center;
 }
 
-.modal{
+.form{
   max-width: 800px;
-  margin:auto;
+  margin: auto;
   background: var(--white-main);
   border-radius: 10px;
-  padding: 25px;
+  padding: 30px;
 }

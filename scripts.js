@@ -1,3 +1,7 @@
+const grayscale  = document.querySelector(".grayscale");
+
+
+
 // let myLibrary = [];
 // let display = document.querySelector("h3");
 
