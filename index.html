@@ -14,45 +14,26 @@
 <div class="header">
   <h1> Library Lite </h1>
   <p> Read, Laugh, Live - Your one-stop site in remembering your book adventures. Made by <a href="https://github.com/jedtap">Jed</a>.</p>
- <button class="btn btn-primary"> Remember a book </button>
+ <button class="btn btn-primary open-form"> Remember a book </button>
 </div>
 
 <br>
-<div class="container">
-
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h2 class="card-title">The Success Principles wefw</h2>
-      <h3 class="card-subtitle mb-2 text-muted">Jack Canfield</h3>
-      <p class="card-text">No. of pages: 69 </p>
-      <input type="checkbox" id="read" name="read" required>
-      <label for="read">Done reading?</label> <br>
-      <p class="remove-link"><a href="#">Remove book</p></a>
-    </div>
-  </div>
-
-
-
-</div>
+<div class="container"></div>
 
 <div class="overlay">
   <div class="form">
     <h4>Save a new book</h4>
-
-    <form id="book-form">
       <input type="text" id="title" name="title" placeholder="Title of the book" class="form-control" required>
       <br>
       <input type="text" id="author" name="author" placeholder="Author" class="form-control" required>
       <br>
       <input type="number" id="pages" name="pages" min = "1" placeholder="Number of pages" class="form-control" required>
       <br>
-      <input type="checkbox" id="read" name="read" required>
-      <label for="read">Done reading?</label>
+      <input type="checkbox" id="read-form" name="read-form">
+      <label for="read-form">Done reading?</label>
       <br>
-      <button type="button" class="btn btn-outline-primary" onclick="closeModal()">Cancel</button>
-      <button type="submit" class="btn btn-primary">Add Book</button>
-    </form>
-
+      <button type="button" class="btn btn-outline-primary close-form">Cancel</button>
+      <button type="button" class="btn btn-primary submit-form">Add Book</button>
   </div>
 </div>
 
