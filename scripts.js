@@ -7,7 +7,7 @@ function displayBook(book, index){
   //     <h2 class="card-title">The Success Principles wefw</h2>
   //     <h3 class="card-subtitle mb-2 text-muted">Jack Canfield</h3>
   //     <p class="card-text">No. of pages: 69 </p>
-  //     <button type="button" class="btn btn-outline-primary">Unread</button>
+  //     <button type="button" class="btn btn-outline-primary" data-index="1">Unread</button>
   //     <br>
   //     <p class="remove-link">
   //       <a href="#">Remove book</a>
@@ -42,6 +42,7 @@ function displayBook(book, index){
 
   readButton = document.createElement("button");
   readButton.setAttribute("type","button");
+  readButton.setAttribute("data-index", index);
   if(book.read){
     readButton.setAttribute("class","btn btn-primary");
     readButton.appendChild(document.createTextNode("Read"));
@@ -49,6 +50,7 @@ function displayBook(book, index){
     readButton.setAttribute("class","btn btn-outline-primary");
     readButton.appendChild(document.createTextNode("Unread"));
   }
+  readButton.addEventListener("click", () => changeRead(index) );
   cardBody.appendChild(readButton);
 
   linebreak = document.createElement("br");
@@ -75,10 +77,14 @@ function Book(title, author, pages, read){
   this.read = read;
 }
 
-function addBookToLibrary(newBook) {
-  myLibrary.push(newBook);
+function saveToMemory(){
   memory.clear();
   memory.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+
+function addBookToLibrary(newBook) {
+  myLibrary.push(newBook);
+  saveToMemory();
 }
 
 function clearForm(){
@@ -93,13 +99,23 @@ function removeBook(index){
   rejectBook.style.display = "none";
 
   myLibrary[index] = false;
-  memory.clear();
-  memory.setItem("myLibrary", JSON.stringify(myLibrary));
+  saveToMemory();
 }
 
-function changeRead(){
-  // Add a button on each book’s display to change its read status.
-// To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.
+function changeRead(index){
+  let statusButton = document.querySelector(`[data-index="${index}"][type="button"]`);
+    
+  if (myLibrary[index].read){
+    statusButton.setAttribute("class","btn btn-outline-primary");
+    statusButton.textContent = "Unread";
+    myLibrary[index].read = false;
+  } else {
+    statusButton.setAttribute("class","btn btn-primary");
+    statusButton.textContent = "Read";
+    myLibrary[index].read = true;
+  }
+  
+  saveToMemory();
 }
 
 
