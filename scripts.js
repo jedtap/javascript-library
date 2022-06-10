@@ -3,13 +3,13 @@ function displayBook(book, index){
   // HTML format is based on bootstrap:
 
   // <div class="card" style="width: 18rem;" data-index="1">
-  //   <div class="card-body" data-index="1">
+  //   <div class="card-body">
   //     <h2 class="card-title">The Success Principles wefw</h2>
   //     <h3 class="card-subtitle mb-2 text-muted">Jack Canfield</h3>
   //     <p class="card-text">No. of pages: 69 </p>
   //     <button type="button" class="btn btn-outline-primary">Unread</button>
   //     <br>
-  //     <p class="remove-link" data-index="1">
+  //     <p class="remove-link">
   //       <a href="#">Remove book</a>
   //     </p>
   //   </div>
@@ -23,7 +23,6 @@ function displayBook(book, index){
   
   cardBody = document.createElement("div");
   cardBody.classList.add("card-body");
-  cardBody.setAttribute("data-index", index);
   card.appendChild(cardBody);
 
   cardTitle = document.createElement("h2");
@@ -57,7 +56,7 @@ function displayBook(book, index){
   
   removeLink = document.createElement("p");
   removeLink.classList.add("remove-link");
-  removeLink.setAttribute("data-index", index);
+  removeLink.addEventListener("click", () => removeBook(index) )
   cardBody.appendChild(removeLink);
 
   hyperlink = document.createElement("a");
@@ -89,9 +88,13 @@ function clearForm(){
   readForm.checked = false;
 }
 
-function removeBook(){
-  // Add a button on each book’s display to remove the book from the library.
-// You will need to associate your DOM elements with the actual book objects in some way. One easy solution is giving them a data-attribute that corresponds to the index of the library array.
+function removeBook(index){
+  let rejectBook = document.querySelector(`[data-index="${index}"][style="width: 18rem;"]`);
+  rejectBook.style.display = "none";
+
+  myLibrary[index] = false;
+  memory.clear();
+  memory.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
 function changeRead(){
@@ -120,7 +123,11 @@ let myLibrary = [];
 let memory = window.localStorage;
 if (memory.getItem("myLibrary")){
   myLibrary = JSON.parse(memory.getItem("myLibrary"));
-  for(var x in myLibrary) { displayBook(myLibrary[x], x); }
+  for(var x in myLibrary) {
+    if(myLibrary[x]){
+      displayBook(myLibrary[x], x);
+    }
+  }
 } 
 
 
